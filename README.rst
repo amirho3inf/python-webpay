@@ -43,8 +43,10 @@ Simple example:
             reference='payment#1',
             amount_irr=100000
         )
-        print("Payment confirmed")
-        print("Data", payment_data)
+        if payment_data.get("status") == "paid":
+            print("Payment confirmed")
+        else:
+            print("Payment not confirmed")
     except Exception as exc:
         if exc.error_key == 'NOT_CONFIRMED':
             print("Payment not confirmed")
@@ -78,8 +80,10 @@ Async example:
                 reference='payment#1',
                 amount_irr=100000
             )
-            print("Payment confirmed")
-            print("Data", payment_data)
+            if payment_data.get("status") == "paid":
+                print("Payment confirmed")
+            else:
+                print("Payment not confirmed")
         except Exception as exc:
             if exc.error_key == 'NOT_CONFIRMED':
                 print("Payment not confirmed")
