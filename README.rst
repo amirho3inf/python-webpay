@@ -38,10 +38,18 @@ Simple example:
     )
 
     # Verify payment
-    payment_data = webpay.verify(
-        reference='payment#1',
-        amount_irr=100000
-    )
+    try:
+        payment_data = webpay.verify(
+            reference='payment#1',
+            amount_irr=100000
+        )
+        print("Payment confirmed")
+        print("Data", payment_data)
+    except Exception as exc:
+        if exc.error_key == 'NOT_CONFIRMED':
+            print("Payment not confirmed")
+        else:
+            raise exc
 
 Async example:
 
@@ -65,10 +73,18 @@ Async example:
         )
 
         # Verify payment
-        payment_data = await webpay.verify(
-            reference='payment#1',
-            amount_irr=100000
-        )
+        try:
+            payment_data = await webpay.verify(
+                reference='payment#1',
+                amount_irr=100000
+            )
+            print("Payment confirmed")
+            print("Data", payment_data)
+        except Exception as exc:
+            if exc.error_key == 'NOT_CONFIRMED':
+                print("Payment not confirmed")
+            else:
+                raise exc
 
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
