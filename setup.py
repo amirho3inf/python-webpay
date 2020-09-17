@@ -36,7 +36,7 @@ def get_description():
 
 
 setup(
-    name='webpay',
+    name='webpay-bahamta',
     version=get_version(),
     packages=find_packages(
         exclude=('tests', 'tests.*', 'examples.*', 'docs',)),
