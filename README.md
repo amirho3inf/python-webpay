@@ -33,7 +33,7 @@ try:
         reference='payment#1',
         amount_irr=100000
     )
-    if payment_data.get("status") == "paid":
+    if payment_data.get("state") == "paid":
             print("Payment confirmed")
     else:
         print("Payment not confirmed")
@@ -68,7 +68,7 @@ async def main():
             reference='payment#1',
             amount_irr=100000
         )
-        if payment_data.get("status") == "paid":
+        if payment_data.get("state") == "paid":
             print("Payment confirmed")
         else:
             print("Payment not confirmed")
