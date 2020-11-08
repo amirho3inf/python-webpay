@@ -3,15 +3,28 @@ Webpay API interface
 full documentation at: https://webpay.bahamta.com/doc/api
 """
 
+import re
 import json
+from pathlib import Path
 from typing import Optional
 from .exceptions import APIError, DependencyError
+
+
+def get_version():
+    """
+    Read version from __init__ file
+    """
+    txt = (Path(__file__).parent / '__init__.py').read_text('utf-8')
+    try:
+        return re.findall(r"^__version__ = '([^']+)'\r?$", txt, re.M)[0]
+    except IndexError:
+        raise RuntimeError('Unable to determine version.')
 
 
 class WebpayBase:
     BASE_URL = "https://webpay.bahamta.com/api"
     DOCS_URL = "https://webpay.bahamta.com/doc/api"
-    USER_AGENT = f"Webpay Python library"
+    USER_AGENT = f"Webpay Python library - {get_version()}"
 
     def __init__(self, api_key: str):
         self._API_KEY = api_key
