@@ -13,7 +13,7 @@ pip install webpay-bahamta[async]
 ## Usage
 Simple example:
 ```python
-from webpay import WebpayAPI
+from webpay import WebpayAPI, exceptions
 
 API_KEY = "webpay:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz"
 webpay = WebpayAPI(API_KEY)
@@ -37,7 +37,7 @@ try:
             print("Payment confirmed")
     else:
         print("Payment not confirmed")
-except Exception as exc:
+except exceptions.APIError as exc:
     if exc.error_key == 'NOT_CONFIRMED':
         print("Payment not confirmed")
     else:
@@ -46,7 +46,7 @@ except Exception as exc:
 Async example:
 ```python
 import asyncio
-from webpay import AsyncWebpayAPI
+from webpay import AsyncWebpayAPI, exceptions
 
 API_KEY = "webpay:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz"
 webpay = AsyncWebpayAPI(API_KEY)
@@ -72,7 +72,7 @@ async def main():
             print("Payment confirmed")
         else:
             print("Payment not confirmed")
-    except Exception as exc:
+    except exceptions.APIError as exc:
         if exc.error_key == 'NOT_CONFIRMED':
             print("Payment not confirmed")
         else:
