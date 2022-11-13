@@ -30,7 +30,7 @@ Simple example:
 
     # Make a payment
     payment_url = webpay.payment(
-        reference='payment#1',
+        reference='payment1',
         amount_irr=100000,
         callback_url='https://example.com',
         payer_mobile='+989111111111',  # Optional
@@ -40,7 +40,7 @@ Simple example:
     # Verify payment
     try:
         payment_data = webpay.verify(
-            reference='payment#1',
+            reference='payment1',
             amount_irr=100000
         )
         if payment_data.get("status") == "paid":
@@ -67,7 +67,7 @@ Async example:
     async def main():
         # Make a payment
         payment_url = await webpay.payment(
-            reference='payment#1',
+            reference='payment1',
             amount_irr=100000,
             callback_url='https://example.com',
             payer_mobile='+989111111111',  # Optional
@@ -77,7 +77,7 @@ Async example:
         # Verify payment
         try:
             payment_data = await webpay.verify(
-                reference='payment#1',
+                reference='payment1',
                 amount_irr=100000
             )
             if payment_data.get("status") == "paid":
